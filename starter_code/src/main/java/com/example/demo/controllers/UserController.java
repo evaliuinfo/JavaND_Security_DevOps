@@ -28,6 +28,11 @@ public class UserController {
 	@Autowired
 	private CartRepository cartRepository;
 
+	public UserController(UserRepository userRepository, CartRepository cartRepository) {
+		userRepository = userRepository;
+		cartRepository = cartRepository;
+	}
+
 	@GetMapping("/id/{id}")
 	public ResponseEntity<User> findById(@PathVariable Long id) {
 		return ResponseEntity.of(userRepository.findById(id));
