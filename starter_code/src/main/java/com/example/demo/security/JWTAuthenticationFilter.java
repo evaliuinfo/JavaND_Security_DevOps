@@ -18,6 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import com.auth0.jwt.JWT;
+
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private static final Logger log = LoggerFactory.getLogger(JWTAuthenticationFilter.class);
