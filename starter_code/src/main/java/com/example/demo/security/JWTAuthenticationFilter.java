@@ -22,9 +22,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import com.auth0.jwt.JWT;
 
+import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
-    private static final Logger log = LoggerFactory.getLogger(JWTAuthenticationFilter.class);
+    private Logger log = LoggerFactory.getLogger(JWTAuthenticationFilter.class);
     private AuthenticationManager authenticationManager;
 
     public JWTAuthenticationFilter (AuthenticationManager authenticationManager) {
