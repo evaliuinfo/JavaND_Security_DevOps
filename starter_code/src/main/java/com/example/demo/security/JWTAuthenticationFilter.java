@@ -1,5 +1,6 @@
 package com.example.demo.security;
 
+import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.example.demo.model.persistence.User;
 import com.fasterxml.jackson.core.JsonParseException;
@@ -20,16 +21,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
-import com.auth0.jwt.JWT;
-
-import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
-    private Logger log = LoggerFactory.getLogger(JWTAuthenticationFilter.class);
+    public static final Logger log = LoggerFactory.getLogger(JWTAuthenticationFilter.class);
     private AuthenticationManager authenticationManager;
 
-    public JWTAuthenticationFilter (AuthenticationManager authenticationManager) {
-        authenticationManager = authenticationManager;
+    public JWTAuthenticationFilter(AuthenticationManager authenticationManager) {
+        this.authenticationManager = authenticationManager;
     }
 
     @Override

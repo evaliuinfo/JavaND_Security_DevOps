@@ -14,10 +14,14 @@ import java.util.Collections;
 
 @Service
 public class UserDetailsServiceImplement implements UserDetailsService {
-    private Logger log = LoggerFactory.getLogger(UserDetailsServiceImplement.class);
+    public static final Logger log = LoggerFactory.getLogger(UserDetailsServiceImplement.class);
 
     @Autowired
     private UserRepository userRepository;
+
+    public UserDetailsServiceImplement(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

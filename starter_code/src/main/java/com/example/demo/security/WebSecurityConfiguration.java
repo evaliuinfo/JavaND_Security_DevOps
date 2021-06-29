@@ -1,5 +1,4 @@
 package com.example.demo.security;
-import com.example.demo.model.persistence.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -18,8 +17,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public WebSecurityConfiguration(UserDetailsServiceImplement userDetailsServiceImpl, BCryptPasswordEncoder bCryptPasswordEncoder) {
-        userDetailsServiceImpl = userDetailsServiceImpl;
-        bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.userDetailsServiceImpl = userDetailsServiceImpl;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     @Override

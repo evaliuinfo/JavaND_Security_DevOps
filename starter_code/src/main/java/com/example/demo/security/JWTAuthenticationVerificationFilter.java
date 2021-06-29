@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class JWTAuthenticationVerificationFilter extends BasicAuthenticationFilter {
-    public JWTAuthenticationVerificationFilter (AuthenticationManager authenticationManager) {
+    public JWTAuthenticationVerificationFilter(AuthenticationManager authenticationManager) {
         super(authenticationManager);
     }
 
@@ -29,7 +29,6 @@ public class JWTAuthenticationVerificationFilter extends BasicAuthenticationFilt
         UsernamePasswordAuthenticationToken authenticationToken = getAuthentication(request);
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);
         chain.doFilter(request, response);
-
     }
 
     private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request) {

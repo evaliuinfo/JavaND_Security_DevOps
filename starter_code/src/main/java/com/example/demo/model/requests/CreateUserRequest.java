@@ -7,6 +7,12 @@ public class CreateUserRequest {
 	@JsonProperty
 	private String username;
 
+	public CreateUserRequest() {}
+
+	public CreateUserRequest(String username) {
+		this.username = username;
+	}
+
 	public String getUsername() {
 		return username;
 	}
