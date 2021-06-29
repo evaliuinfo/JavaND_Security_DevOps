@@ -26,7 +26,6 @@ public class JWTAuthenticationVerificationFilter extends BasicAuthenticationFilt
             chain.doFilter(request, response);
             return;
         }
-
         UsernamePasswordAuthenticationToken authenticationToken = getAuthentication(request);
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);
         chain.doFilter(request, response);

@@ -1,6 +1,6 @@
 package com.example.demo.security;
 import com.example.demo.model.persistence.User;
-import com.example.demo.model.persistence.repositories.UserRepository;
+import com.example.demo.model.persistence.repositories.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
