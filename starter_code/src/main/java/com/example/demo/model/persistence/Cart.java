@@ -26,17 +26,18 @@ public class Cart {
 	@JsonProperty
     private User user;
 
-	public Cart() {}
-
-	public Cart(Long id, List<Item> items, User user) {
-		this.id = id;
-		this.items = items;
-		this.user = user;
-	}
-	
 	@Column
 	@JsonProperty
 	private BigDecimal total;
+
+	public Cart() {}
+
+	public Cart(Long id, List<Item> items, User user, BigDecimal total) {
+		this.id = id;
+		this.items = items;
+		this.user = user;
+		this.total = total;
+	}
 	
 	public BigDecimal getTotal() {
 		return total;

@@ -7,6 +7,7 @@ import com.example.demo.model.persistence.repositories.UserRepository;
 import com.example.demo.model.requests.CreateUserRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,9 +20,13 @@ public class UserController {
 	@Autowired
 	private CartRepository cartRepository;
 
-	public UserController(UserRepository userRepository, CartRepository cartRepository) {
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+	@Autowired
+	public UserController(UserRepository userRepository, CartRepository cartRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
 		this.userRepository = userRepository;
 		this.cartRepository = cartRepository;
+		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
 	}
 
 	@GetMapping("/id/{id}")
@@ -42,6 +47,10 @@ public class UserController {
 		Cart cart = new Cart();
 		cartRepository.save(cart);
 		user.setCart(cart);
+		if (createUserRequest.getPassword().length()<=6 || !createUserRequest.getPassword().equals(createUserRequest.getConfirmPassword())) {
+			return ResponseEntity.badRequest().build();
+		}
+		user.setPassword(bCryptPasswordEncoder.encode(createUserRequest.getPassword()));
 		userRepository.save(user);
 		return ResponseEntity.ok(user);
 	}

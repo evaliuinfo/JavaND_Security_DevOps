@@ -20,8 +20,7 @@ public class OrderController {
 	@Autowired
 	private OrderRepository orderRepository;
 
-	public OrderController() {}
-
+	@Autowired
 	public OrderController(UserRepository userRepository, OrderRepository orderRepository){
 		this.userRepository = userRepository;
 		this.orderRepository = orderRepository;

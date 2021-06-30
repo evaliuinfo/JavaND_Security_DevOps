@@ -18,8 +18,7 @@ public class ItemController {
 	@Autowired
 	private ItemRepository itemRepository;
 
-	public ItemController() {}
-
+	@Autowired
 	public ItemController(ItemRepository itemRepository) {
 		this.itemRepository = itemRepository;
 	}

@@ -1,7 +1,6 @@
 package com.example.demo.security;
 
 import com.auth0.jwt.JWT;
-import com.auth0.jwt.algorithms.Algorithm;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
 
 public class JWTAuthenticationVerificationFilter extends BasicAuthenticationFilter {
     public JWTAuthenticationVerificationFilter(AuthenticationManager authenticationManager) {
@@ -34,7 +35,7 @@ public class JWTAuthenticationVerificationFilter extends BasicAuthenticationFilt
     private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request) {
         String token = request.getHeader(SecurityConstants.HEADER_STRING);
         if (token != null) {
-            String user = JWT.require(Algorithm.HMAC512(SecurityConstants.SECRET.getBytes()))
+            String user = JWT.require(HMAC512(SecurityConstants.SECRET.getBytes()))
                     .build()
                     .verify(token.replace(SecurityConstants.TOKEN_PREFIX, ""))
                     .getSubject();

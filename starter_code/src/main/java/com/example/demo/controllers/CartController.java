@@ -31,8 +31,7 @@ public class CartController {
 	@Autowired
 	private ItemRepository itemRepository;
 
-	public CartController() {}
-
+	@Autowired
 	public CartController(UserRepository userRepository, CartRepository cartRepository, ItemRepository itemRepository) {
 		this.userRepository = userRepository;
 		this.cartRepository = cartRepository;

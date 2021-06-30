@@ -25,6 +25,8 @@ public class TestOrderController {
     private OrderRepository orderRepository = mock(OrderRepository.class);
     private UserRepository userRepository = mock(UserRepository.class);
 
+    public TestOrderController() {}
+
     @Before
     public void setUp() {
         orderController = new OrderController(null, null);

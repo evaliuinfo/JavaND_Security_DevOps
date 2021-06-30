@@ -26,6 +26,8 @@ public class TestCartController {
     private CartRepository cartRepository = mock(CartRepository.class);
     private ItemRepository itemRepository = mock(ItemRepository.class);
 
+    public TestCartController() {}
+
     @Before
     public void setUp() {
         cartController = new CartController(null, null, null);

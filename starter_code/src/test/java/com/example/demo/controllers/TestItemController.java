@@ -20,6 +20,8 @@ public class TestItemController {
     private ItemController itemController;
     private ItemRepository itemRepository = mock(ItemRepository.class);
 
+    public TestItemController() {}
+
     @Before
     public void setUp() {
         itemController = new ItemController(null);
