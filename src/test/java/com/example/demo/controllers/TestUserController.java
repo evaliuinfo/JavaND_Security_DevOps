@@ -9,6 +9,7 @@ import com.example.demo.model.requests.CreateUserRequest;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -20,6 +21,7 @@ public class TestUserController {
     private UserController userController;
     private UserRepository userRepository = mock(UserRepository.class);
     private CartRepository cartRepository = mock(CartRepository.class);
+    private BCryptPasswordEncoder encoder = mock(BCryptPasswordEncoder.class);
 
     public TestUserController() {}
 
@@ -28,11 +30,13 @@ public class TestUserController {
         userController = new UserController(null, null, null);
         TestUtil.injectObjects(userController, "userRepository", userRepository);
         TestUtil.injectObjects(userController, "cartRepository", cartRepository);
+        TestUtil.injectObjects(userController, "bCryptPasswordEncoder", encoder);
 
         User user = new User();
         Cart cart = new Cart();
-        user.setId(0L);
+        user.setId(0);
         user.setUsername("test");
+        user.setPassword("testPassword");
         user.setCart(cart);
         when(userRepository.findByUsername("test")).thenReturn(user);
         when(userRepository.findById(0L)).thenReturn(java.util.Optional.of(user));
@@ -41,16 +45,33 @@ public class TestUserController {
 
     @Test
     public void createUserPath() {
+        when(encoder.encode("testPassword")).thenReturn("thisIsHashed");
         CreateUserRequest request = new CreateUserRequest();
         request.setUsername("test");
+        request.setPassword("testPassword");
+        request.setConfirmPassword("testPassword");
         final ResponseEntity<User> response = userController.createUser(request);
+
         assertNotNull(response);
         assertEquals(200, response.getStatusCodeValue());
 
         User user = response.getBody();
         assertNotNull(user);
-        assertEquals(0L, user.getId());
+        assertEquals(0, user.getId());
         assertEquals("test", user.getUsername());
+        assertEquals("thisIsHashed", user.getPassword());
+    }
+
+    @Test
+    public void createUserPasswordTooShort() {
+        CreateUserRequest user = new CreateUserRequest();
+        user.setUsername("test");
+        user.setPassword("short");
+        user.setConfirmPassword("short");
+        final ResponseEntity<User> response = userController.createUser(user);
+
+        assertNotNull(response);
+        assertEquals(400, response.getStatusCodeValue());
     }
 
     @Test

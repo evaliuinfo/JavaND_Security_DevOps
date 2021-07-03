@@ -39,7 +39,7 @@ public class TestCartController {
         Cart cart = new Cart();
         user.setId(0);
         user.setUsername("test");
-        //user.setPassword("testpassword");
+        user.setPassword("testPassword");
         user.setCart(cart);
         when(userRepository.findByUsername("test")).thenReturn(user);
 
