@@ -1,7 +1,12 @@
 Jenkinsfile (Declarative Pipeline)
 pipeline {
- agent { docker { image 'maven:3.3.3' } }
+ agent { docker { image 'evaliuinfo/docker-build-ecommerce' } }
  stages {
+     stage('initialize') {
+	steps{
+ 	    sh 'echo "Start Ecommerce app"'
+	}
+     }
      stage('build') {
          steps {
              sh 'mvn --version'
