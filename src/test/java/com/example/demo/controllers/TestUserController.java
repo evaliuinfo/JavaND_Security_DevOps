@@ -75,6 +75,17 @@ public class TestUserController {
     }
 
     @Test
+    public void createUserPasswordConfirmMismatch() {
+        CreateUserRequest request = new CreateUserRequest();
+        request.setUsername("test");
+        request.setPassword("theRightPassword");
+        request.setConfirmPassword("thewrongpassword");
+        final ResponseEntity<User> response = userController.createUser(request);
+        assertNotNull(response);
+        assertEquals(400, response.getStatusCodeValue());
+    }
+
+    @Test
     public void findUserByNamePath() {
         final ResponseEntity<User> response = userController.findByUserName("test");
         assertNotNull(response);
