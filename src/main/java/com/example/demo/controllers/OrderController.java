@@ -13,11 +13,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/order")
 public class OrderController {
-	
-	@Autowired
+
 	private UserRepository userRepository;
-	
-	@Autowired
+
 	private OrderRepository orderRepository;
 
 	@Autowired

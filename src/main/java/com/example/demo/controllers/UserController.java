@@ -16,13 +16,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/user")
 public class UserController {
 	private static final Logger log = LoggerFactory.getLogger(UserController.class);
-	
-	@Autowired
 	private UserRepository userRepository;
-	
-	@Autowired
 	private CartRepository cartRepository;
-
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@Autowired
@@ -54,9 +49,6 @@ public class UserController {
 		cartRepository.save(cart);
 		user.setCart(cart);
 		if (createUserRequest.getPassword().length()<=6 || !createUserRequest.getPassword().equals(createUserRequest.getConfirmPassword())) {
-			//log.info("Get confirmed password {}", createUserRequest.getConfirmPassword());
-			//log.info("Get password {}", createUserRequest.getPassword());
-			//log.error("Cannot create user {} because the password is invalid", createUserRequest.getUsername());
 			return ResponseEntity.badRequest().build();
 		}
 		user.setPassword(bCryptPasswordEncoder.encode(createUserRequest.getPassword()));

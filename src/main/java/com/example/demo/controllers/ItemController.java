@@ -15,7 +15,6 @@ import java.util.List;
 @RequestMapping("/api/item")
 public class ItemController {
 
-	@Autowired
 	private ItemRepository itemRepository;
 
 	@Autowired

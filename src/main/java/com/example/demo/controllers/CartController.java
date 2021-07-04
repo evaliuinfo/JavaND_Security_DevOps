@@ -21,14 +21,11 @@ import java.util.stream.IntStream;
 @RestController
 @RequestMapping("/api/cart")
 public class CartController {
-	
-	@Autowired
+
 	private UserRepository userRepository;
-	
-	@Autowired
+
 	private CartRepository cartRepository;
-	
-	@Autowired
+
 	private ItemRepository itemRepository;
 
 	@Autowired
