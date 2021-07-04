@@ -6,6 +6,7 @@
 *.sw?
 *~
 .#*
+.log
 .*.md.html
 .DS_Store
 .attach_pid*
@@ -21,6 +22,7 @@
 .vscode
 starter_code/*.iml
 /code
+logs
 MANIFEST.MF
 _site/
 activemq-data
