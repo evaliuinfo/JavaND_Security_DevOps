@@ -39,16 +39,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             return authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(credentials.getUsername(), credentials.getPassword(), new ArrayList<>())
             );
-        } catch (JsonMappingException e) {
-            e.printStackTrace();
-            log.error("Json mapping failed: ", e.getMessage());
-            throw new RuntimeException(e);
-        } catch (JsonParseException e) {
-            e.printStackTrace();
-            log.error("Json Parse failed: ", e.getMessage());
-            throw new RuntimeException(e);
         } catch (IOException e) {
-            e.printStackTrace();
             log.error("Authentication attempt failed: ", e.getMessage());
             throw new RuntimeException(e);
         }

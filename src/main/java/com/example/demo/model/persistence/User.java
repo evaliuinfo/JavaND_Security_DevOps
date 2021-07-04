@@ -23,13 +23,10 @@ public class User {
 	@Column(nullable = false)
 	private String password;
 
-	
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cart_id", referencedColumnName = "id")
 	@JsonIgnore
     private Cart cart;
-
-	public User() {}
 	
 	public Cart getCart() {
 		return cart;
