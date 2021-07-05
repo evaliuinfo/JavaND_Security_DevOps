@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 import com.example.demo.model.persistence.Cart;
+import com.example.demo.model.persistence.Item;
 import com.example.demo.model.persistence.User;
 import com.example.demo.model.persistence.repositories.CartRepository;
 import com.example.demo.model.persistence.repositories.UserRepository;
@@ -11,6 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/user")
@@ -56,5 +60,12 @@ public class UserController {
 		log.info("New user {} created", createUserRequest.getUsername());
 		return ResponseEntity.ok(user);
 	}
-	
+
+	//@PostMapping("/list")
+    //public 	ResponseEntity<User> listUsers(@RequestBody CreateUserRequest createUserRequest) {
+	//	log.info("UserController.listUsers called");
+	//	List<User> users = new ArrayList<>();
+	//	users = userRepository.findAll();
+
+	//}
 }

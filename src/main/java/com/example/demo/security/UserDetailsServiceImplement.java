@@ -1,4 +1,5 @@
 package com.example.demo.security;
+
 import com.example.demo.model.persistence.User;
 import com.example.demo.model.persistence.repositories.UserRepository;
 import org.slf4j.Logger;

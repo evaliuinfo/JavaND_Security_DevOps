@@ -17,7 +17,7 @@ public class SareetaApplication {
 		return new BCryptPasswordEncoder();
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args {
 		SpringApplication.run(SareetaApplication.class, args);
 	}
 }

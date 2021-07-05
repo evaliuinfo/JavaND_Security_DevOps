@@ -15,14 +15,14 @@ public class TestUtil {
             boolean wasPrivate = false;
 
             try {
-                Field f = target.getClass().getDeclaredField(fieldName);
-                if (!f.canAccess(target)) {
-                    f.setAccessible(true);
+                Field field = target.getClass().getDeclaredField(fieldName);
+                if (!field.canAccess(target)) {
+                    field.setAccessible(true);
                     wasPrivate = true;
                 }
-                f.set(target, toInject);
+                field.set(target, toInject);
                 if (wasPrivate) {
-                    f.setAccessible(false);
+                    field.setAccessible(false);
                 }
             } catch (NoSuchFieldException | IllegalAccessException e) {
                 e.printStackTrace();
